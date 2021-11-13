@@ -1,5 +1,7 @@
 import React, { Suspense } from 'react'
 import { Router, Switch, Redirect, Route, useLocation } from "react-router-dom"
+import Footer from '../layout/Footer'
+import Header from '../layout/Header'
 import history from "./history"
 
 const Home = React.lazy(() => import('../views/Home'))
@@ -17,32 +19,29 @@ const AppRouter: React.FC = () => {
     return (
         <Router history={history}>
             <ScrollToTop />
+            <Header />
             <Switch>
                 <Route
                     path='/'
                     exact
                     component={() => (
-                        <>
-
-                            <Suspense fallback={<></>}>
-                                <Home />
-                            </Suspense>
-                        </>
+                        <Suspense fallback={<></>}>
+                            <Home />
+                        </Suspense>
                     )}
                 />
                 <Route
                     path='/search?q=:s'
                     exact
                     component={() => (
-                        <>
-                            <Suspense fallback={<></>}>
-                                <Home />
-                            </Suspense>
-                        </>
+                        <Suspense fallback={<></>}>
+                            <Home />
+                        </Suspense>
                     )}
                 />
                 <Redirect to='/' />
             </Switch>
+            <Footer />
         </Router>
     )
 

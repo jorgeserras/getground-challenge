@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { store } from './state/store'
-import { MuiThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from '@mui/material/styles'
 import './app-configs'
 import App from './App'
 import materialTheme from './materialTheme'
@@ -10,9 +10,9 @@ import materialTheme from './materialTheme'
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <MuiThemeProvider theme={materialTheme}>
+      <ThemeProvider theme={materialTheme}>
         <App />
-      </MuiThemeProvider>
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
