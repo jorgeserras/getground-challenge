@@ -112,10 +112,10 @@ interface Props {
   totalRows: number;
 }
 
-const CustomizedTables: React.FC<Props> = ({rows, columns, totalRows}) => {
+const CustomizedTables: React.FC<Props> = React.memo(({ rows, columns, totalRows }) => {
 
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [page, setPage] = React.useState<number>(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -135,12 +135,14 @@ const CustomizedTables: React.FC<Props> = ({rows, columns, totalRows}) => {
     setPage(0)
   }
 
+  console.log("Table Render")
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            {columns.map((col, i) => 
+            {columns.map((col, i) =>
               <StyledTableCell key={col.name} align={i === 0 ? undefined : 'right'}>{col.name}</StyledTableCell>
             )}
           </TableRow>
@@ -151,8 +153,8 @@ const CustomizedTables: React.FC<Props> = ({rows, columns, totalRows}) => {
             : rows
           ).map((row) => (
             <StyledTableRow key={row.id}>
-              {columns.map((col, i) => 
-                <StyledTableCell key={col.name + row.id} align={i === 0 ? undefined : 'right'} component={i === 0 ? undefined :"th"} scope={i === 0 ? undefined :"row"}>{row[col.value]}</StyledTableCell>
+              {columns.map((col, i) =>
+                <StyledTableCell key={col.name + row.id} align={i === 0 ? undefined : 'right'} component={i === 0 ? undefined : "th"} scope={i === 0 ? undefined : "row"}>{row[col.value]}</StyledTableCell>
               )}
             </StyledTableRow>
           ))}
@@ -184,6 +186,6 @@ const CustomizedTables: React.FC<Props> = ({rows, columns, totalRows}) => {
       </Table>
     </TableContainer>
   )
-}
+})
 
 export default CustomizedTables

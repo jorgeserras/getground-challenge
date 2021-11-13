@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { RootStateOrAny, useSelector } from 'react-redux'
-import { depositBooks, useActions } from '../state/actions'
-import axios from 'axios'
+import { loadBooks, useActions } from '../state/actions'
 import { styled } from "@mui/material/styles"
 import { Grid } from '@mui/material'
 import Search from '../components/Search'
@@ -16,47 +15,32 @@ const cols = [
     { name: 'Pages', value: 'book_pages' }
 ]
 
-const BookShelf: React.FC = () => {
+interface Props {
+    searchQuery?: string | null;
+    searchCallBack: (searchText: string) => void;
+}
 
-    const { books } = useSelector((state: RootStateOrAny) => state.repository)
-    //const { depositMoney, withdrawMoney } = bindActionCreators(actionCreators, dispatch)
+const BookShelf: React.FC<Props> = ({ searchQuery, searchCallBack }) => {
 
-    const setRepositoryBooks = useActions(depositBooks)
-
-    const [bookCount, setBookCount] = React.useState<number>(0)
+    const { books, count } = useSelector((state: RootStateOrAny) => state.repository, (prev, next) => prev.loading === next.loading)
+    const getRepositoryBooks = useActions(loadBooks)
 
 
     useEffect(() => {
-        axios.post('/api/books', {
-            page: 1,
-            itemsPerPage: 9999,
-            filters: []
-        })
-            .then(res => {
-                const { books, count } = res.data
-                setBookCount(count)
-                setRepositoryBooks(books)
-            })
-            .catch(err => console.log(err.response.data.message))
+        getRepositoryBooks(searchQuery)
+    }, [getRepositoryBooks, searchQuery])
 
-    }, [])
-
-    const handleSearch = (e: React.SyntheticEvent) => {
+    const handleSearch = useCallback((e: React.SyntheticEvent) => {
         e.preventDefault()
-
         const target = e.target as typeof e.target & {
             search: { value: string }
         }
-
         const search = target.search.value
+        searchCallBack(search)
 
-        console.log(search)
+    }, [searchCallBack])
 
-        if (!search)
-            console.log("Nothing searched")
-
-    }
-
+    console.log("BookShelf Render")
 
 
     return (
@@ -65,9 +49,9 @@ const BookShelf: React.FC = () => {
                 Find the best books
             </Grid>
             <Grid item xs={6} lg={3}>
-                <Search text="Search book" handleSearch={handleSearch} />
+                <Search text="Search book" defaultValue={searchQuery} handleSearch={handleSearch} />
             </Grid>
-            <Table rows={books} columns={cols} totalRows={bookCount} />
+            <Table rows={books} columns={cols} totalRows={count} />
         </Grid>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback } from 'react'
 import { ViewProps } from '../types/interfaces'
 import { styled } from "@mui/material/styles"
 import { useQuery } from '../hooks/query'
@@ -11,16 +11,17 @@ const GridContainer = styled(Grid)(({ theme }) => ({
 }))
 
 
-const Home: React.FC<ViewProps> = () => {
-
+const Home: React.FC<ViewProps> = ({ history }) => {
     const query = useQuery()
-
-    console.log(query.get("q"))
+    const searchQuery = query.get("s")
+    const handleSearch = useCallback((searchText: string) => {
+        history.push(`/search?s=${searchText}`)
+    }, [history])
 
     return (
         <main>
             <Container maxWidth="lg">
-                <BookShelf />
+                <BookShelf searchQuery={searchQuery} searchCallBack={handleSearch} />
 
 
 

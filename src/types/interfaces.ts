@@ -15,3 +15,9 @@ export interface Book {
     book_title: string;
     book_author: string[];
 }
+
+export interface RootState {
+    books: Book[];
+    count: number;
+    loading: boolean;
+}
