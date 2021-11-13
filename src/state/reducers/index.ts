@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { bookReducer } from './bookReducer'
 
 const reducers = combineReducers({
-    account: bookReducer
+    repository: bookReducer
 })
 
 export default reducers

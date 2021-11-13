@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import CssBaseline from "@mui/material/CssBaseline"
 import { Provider } from 'react-redux'
 import { store } from './state/store'
 import { ThemeProvider } from '@mui/material/styles'
@@ -11,6 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={materialTheme}>
+        <CssBaseline />
         <App />
       </ThemeProvider>
     </Provider>

@@ -1,7 +1,8 @@
 import { Dispatch } from 'react';
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
-import { DEPOSIT, WITHDRAW, SET_BOOKS, setBooks } from "../actions"
+import { Book } from '../../types/interfaces'
+import { DEPOSIT, WITHDRAW, SET_BOOKS } from "../actions"
 
 type actionType = {
     type: string,
@@ -9,20 +10,22 @@ type actionType = {
 };
 
 interface RootState {
-    books: number,
+    books: Book[],
     loading: boolean
 }
 
 const initialState: RootState = {
-    books: 0,
+    books: [],
     loading: false
 }
 
 export const bookReducer = (state: Object = initialState, action: actionType) => {
 
     switch (action.type) {
+        case SET_BOOKS:
+            return { ...state, books: action.payload }
         case DEPOSIT:
-            return state + action.payload
+            return { ...state, books: action.payload }
         case WITHDRAW:
             return { ...state, ...action.payload }
         default:

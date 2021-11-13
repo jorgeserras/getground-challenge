@@ -26,16 +26,15 @@ const AppRouter: React.FC = () => {
                     exact
                     component={() => (
                         <Suspense fallback={<></>}>
-                            <Home />
+                            <Home history={history} />
                         </Suspense>
                     )}
                 />
                 <Route
-                    path='/search?q=:s'
-                    exact
+                    path='/search'
                     component={() => (
                         <Suspense fallback={<></>}>
-                            <Home />
+                            <Home history={history} />
                         </Suspense>
                     )}
                 />

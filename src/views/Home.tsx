@@ -1,25 +1,30 @@
-import React, { useEffect, useState, useContext } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
+import { ViewProps } from '../types/interfaces'
+import { styled } from "@mui/material/styles"
+import { useQuery } from '../hooks/query'
+import { Grid, Container } from '@mui/material'
+import BookShelf from '../components/BookShelf'
 
 
-const Home: React.FC = () => {
+const GridContainer = styled(Grid)(({ theme }) => ({
+    padding: theme.spacing(12, 0)
+}))
 
-    useEffect(() => {
-        axios.post('/api/books', {
-            page: 1,
-            itemsPerPage: 9999,
-            filters: []
-        })
-            .then(res => {
-                console.log(res.data)
-            })
-            .catch(err => console.log(err.response.data.message))
 
-    }, [])
+const Home: React.FC<ViewProps> = () => {
+
+    const query = useQuery()
+
+    console.log(query.get("q"))
 
     return (
         <main>
-            Home
+            <Container maxWidth="lg">
+                <BookShelf />
+
+
+
+            </Container>
         </main>
     )
 
