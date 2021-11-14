@@ -67,7 +67,7 @@ const Header: React.FC = () => {
         <>
             <StyledAppBar position="relative">
                 <Grid container alignItems="center" justifyContent="center">
-                    <Grid item xs={6} sm={4} md={3}>
+                    <Grid item xs={8} sm={4} md={3}>
                         <Link to="/">
                             <Typography variant="h3">GetGround Books</Typography>
                         </Link>
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
                             </Grid>
                         </StyledGrid>
                     </Grid>
-                    <StyledMobileGrid item textAlign="right" xs={6}>
+                    <StyledMobileGrid item textAlign="right" xs={4}>
                         <IconButton
                             aria-label="show more"
                             aria-controls={mobileMenuId}

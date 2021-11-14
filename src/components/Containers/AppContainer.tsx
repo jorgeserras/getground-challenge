@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles'
 
 const StyledContainer = styled('div')(() => ({
     display: 'flex',
-    flexWrap: 'wrap',
+    flexWrap: 'nowrap',
     flexDirection: 'column',
     justifyContent: 'space-between',
     minHeight: '100vh'
