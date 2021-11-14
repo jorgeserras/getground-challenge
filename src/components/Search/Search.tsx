@@ -39,7 +39,7 @@ interface Props {
 const Search: FunctionComponent<Props> = React.memo(({ placeholder, loading, handleSearch, defaultValue }) => (
   <StyledForm data-testid="search" onSubmit={(e) => {
     e.preventDefault()
-    const target = e.target as typeof e.target & {
+    const target = e.target as HTMLInputElement & {
       search: { value: string }
     }
     handleSearch('search', target.search.value)
@@ -54,11 +54,13 @@ const Search: FunctionComponent<Props> = React.memo(({ placeholder, loading, han
     <StyledInputBase
       placeholder={defaultValue || placeholder}
       name="search"
+      data-testid="input-base"
       defaultValue={defaultValue}
       key={defaultValue}
+      disabled={loading}
       inputProps={{ 'aria-label': placeholder, 'data-testid': "input" }}
     />
-    <IconButton onClick={() => handleSearch('search', '')} sx={{ p: '10px' }} aria-label="clear">
+    <IconButton data-testid="clear" onClick={() => handleSearch('search', '')} sx={{ p: '10px' }} aria-label="clear">
       {defaultValue && <ClearIcon color="secondary" />}
     </IconButton>
   </StyledForm>

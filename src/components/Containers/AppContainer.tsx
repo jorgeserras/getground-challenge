@@ -1,22 +1,25 @@
 import React from 'react'
 import { RouteChildrenProps } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
-import { Container } from '@mui/material'
 
-const StyledContainer = styled(Container)(({ theme }) => ({
-    padding: theme.spacing(10, 2)
+const StyledContainer = styled('div')(() => ({
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    minHeight: '100vh'
 }))
 
 interface Props {
     children?: ((props: RouteChildrenProps<any>) => React.ReactNode) | React.ReactNode;
 }
 
-const ViewContainer: React.FC<Props> = ({ children }) => {
+const AppContainer: React.FC<Props> = ({ children }) => {
     return (
-        <StyledContainer maxWidth="lg">
+        <StyledContainer>
             {children}
         </StyledContainer>
     )
 }
 
-export default ViewContainer
+export default AppContainer
