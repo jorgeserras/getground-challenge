@@ -18,7 +18,6 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.primary.main,
@@ -38,7 +37,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }))
-
 
 interface TablePaginationActionsProps {
   count: number;
@@ -171,7 +169,7 @@ const CustomizedTables: React.FC<Props> = React.memo(({ rows, columns, totalRows
               page={page}
               SelectProps={{
                 inputProps: {
-                  'aria-label': 'books per page',
+                  'aria-label': 'Books per page',
                 },
                 native: true,
               }}

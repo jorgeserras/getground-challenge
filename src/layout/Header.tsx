@@ -5,6 +5,7 @@ import { AppBar, AppBarProps, IconButton, Menu, MenuItem, Grid, GridProps, Typog
 import Link from '../components/Link'
 
 const StyledAppBar = styled(AppBar)<AppBarProps>(({ theme }) => ({
+    padding: theme.spacing(0, 2),
     color: "#fff",
     backgroundColor: theme.palette.primary.main
 }))
@@ -61,38 +62,41 @@ const Header: React.FC = () => {
         <>
             <StyledAppBar position="relative">
                 <Grid container alignItems="center" justifyContent="center">
-                    <Grid item xs={6} sm={3} md={2}>
+                    <Grid item xs={6} sm={4} md={3}>
                         <Link to="/">
                             <Typography variant="h3">GetGround Books</Typography>
                         </Link>
                     </Grid>
-                    <Grid item sm={7} md={3}>
+                    <Grid item sm={6} md={4}>
                         <StyledGrid container alignItems="center" justifyContent="center">
-                            <Grid item xs={6}>
+                            <Grid item textAlign="center" xs={4}>
                                 <Link to="/" >
-                                    <Typography variant="h3">Authors</Typography>
+                                    <Typography variant="h4">Authors</Typography>
                                 </Link>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item textAlign="center" xs={4}>
                                 <Link to="/" >
-                                    <Typography variant="h3">Cities</Typography>
+                                    <Typography variant="h4">Cities</Typography>
+                                </Link>
+                            </Grid>
+                            <Grid item textAlign="center" xs={4}>
+                                <Link to="/" >
+                                    <Typography variant="h4">Countries</Typography>
                                 </Link>
                             </Grid>
                         </StyledGrid>
                     </Grid>
-                    <Grid item xs={6} sm={2} md={2}>
-                        <StyledMobileGrid container justifyContent="center">
-                            <IconButton
-                                aria-label="show more"
-                                aria-controls={mobileMenuId}
-                                aria-haspopup="true"
-                                onClick={handleMobileMenuOpen}
-                                color="inherit"
-                            >
-                                <MenuIcon color="secondary" />
-                            </IconButton>
-                        </StyledMobileGrid>
-                    </Grid>
+                    <StyledMobileGrid item textAlign="right" xs={6}>
+                        <IconButton
+                            aria-label="show more"
+                            aria-controls={mobileMenuId}
+                            aria-haspopup="true"
+                            onClick={handleMobileMenuOpen}
+                            color="inherit"
+                        >
+                            <MenuIcon color="secondary" />
+                        </IconButton>
+                    </StyledMobileGrid>
                 </Grid>
             </StyledAppBar>
             {renderMobileMenu}

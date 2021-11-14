@@ -7,7 +7,7 @@ import BookShelf from '../components/BookShelf'
 import Banner from '../components/Banner'
 
 const StyledContainer = styled(Container)(({ theme }) => ({
-    padding: theme.spacing(10, 0),
+    padding: theme.spacing(10, 2),
     minHeight: '100vh'
 }))
 

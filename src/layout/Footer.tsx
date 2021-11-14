@@ -31,12 +31,12 @@ const Footer: React.FC = () => {
                     </Typography>
                     <Grid item>
                         <Link to='/#' variant="light">
-                            - By author
+                            - Italian books
                         </Link>
                     </Grid>
                     <Grid item >
                         <Link to='/#' variant="light">
-                            - By city
+                            - Austrian books
                         </Link>
                     </Grid>
                 </Grid>

@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react'
 import { RootStateOrAny, useSelector } from 'react-redux'
 import { loadBooks, useActions } from '../state/actions'
 import { Grid } from '@mui/material'
-import Search from '../components/Search'
+import Search from './Search/Search'
 import Table from '../components/Table'
 
 const cols = [

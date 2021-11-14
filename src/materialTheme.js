@@ -20,7 +20,7 @@ export default createTheme({
         h1: {
             fontWeight: 700,
             fontSize: "2em",
-            marginBottom: "64px",
+            marginBottom: "16px",
             fontFamily: "Eczar"
         },
         h2: {
@@ -33,11 +33,12 @@ export default createTheme({
             fontSize: "1.3em",
             fontFamily: "Eczar"
         },
+        h4: {
+            margin: "16px 0",
+            fontSize: "1em"
+        },
         body1: {
             fontSize: "1.2em"
-        },
-        subtitle1: {
-            fontSize: "1em"
         },
         button: {
             fontSize: "1.4em",

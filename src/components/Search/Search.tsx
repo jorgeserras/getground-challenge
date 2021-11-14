@@ -37,7 +37,7 @@ interface Props {
 }
 
 const Search: FunctionComponent<Props> = React.memo(({ placeholder, loading, handleSearch, defaultValue }) => (
-  <StyledForm onSubmit={(e) => {
+  <StyledForm data-testid="search" onSubmit={(e) => {
     e.preventDefault()
     const target = e.target as typeof e.target & {
       search: { value: string }

@@ -12,11 +12,12 @@ interface Props {
     children: string;
     variant: "outlined" | "contained";
     color: "primary" | "secondary";
+    onClick: () => void;
 }
 
-const CustomButton: React.FC<Props> = ({ children, variant, color }) => {
+const CustomButton: React.FC<Props> = ({ children, variant, color, onClick }) => {
     return (
-        <StyledButton variant={variant} color={color}>
+        <StyledButton variant={variant} color={color} onClick={onClick}>
             {children}
         </StyledButton>
     )
