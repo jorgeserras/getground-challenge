@@ -1,9 +1,9 @@
 import React, { useEffect, useCallback } from 'react'
 import { RootStateOrAny, useSelector } from 'react-redux'
-import { loadBooks, useActions } from '../state/actions'
+import { loadBooks, useActions } from '../../state/actions'
 import { Grid } from '@mui/material'
-import Search from './Search/Search'
-import Table from '../components/Table'
+import { Search } from '../Search'
+import { Table } from '../Table'
 
 const cols = [
     { name: 'Book Title', value: 'book_title' },
@@ -27,7 +27,7 @@ interface Props {
     ) => void;
 }
 
-const BookShelf: React.FC<Props> = ({ searchOptions, searchCallBack }) => {
+const BooksContainer: React.FC<Props> = ({ searchOptions, searchCallBack }) => {
 
     const { books, count, loading } = useSelector((state: RootStateOrAny) => state.repository, (prev, next) => prev.loading === next.loading)
     const getRepositoryBooks = useActions(loadBooks)
@@ -67,10 +67,6 @@ const BookShelf: React.FC<Props> = ({ searchOptions, searchCallBack }) => {
         }
     }, [searchCallBack, searchQuery, rowsPerPage])
 
-
-    console.log("BookShelf Render")
-
-
     return (
         <Grid container rowSpacing={4} justifyContent="center">
             <Grid item>
@@ -97,4 +93,4 @@ const BookShelf: React.FC<Props> = ({ searchOptions, searchCallBack }) => {
 }
 
 
-export default BookShelf
+export default BooksContainer

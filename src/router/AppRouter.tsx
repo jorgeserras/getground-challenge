@@ -43,7 +43,6 @@ const AppRouter: React.FC = () => {
             <Footer />
         </Router>
     )
-
 }
 
 export default AppRouter

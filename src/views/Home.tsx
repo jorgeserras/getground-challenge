@@ -1,15 +1,8 @@
 import React, { useCallback } from 'react'
 import { ViewProps } from '../types/interfaces'
-import { styled } from "@mui/material/styles"
 import { useQuery } from '../hooks/query'
-import Container from '@mui/material/Container'
-import BookShelf from '../components/BookShelf'
-import Banner from '../components/Banner'
-
-const StyledContainer = styled(Container)(({ theme }) => ({
-    padding: theme.spacing(10, 2),
-    minHeight: '100vh'
-}))
+import { BooksContainer, ViewContainer } from '../components/Containers'
+import { Banner } from '../components/Banner'
 
 const Home: React.FC<ViewProps> = ({ history }) => {
     const query = useQuery()
@@ -28,8 +21,8 @@ const Home: React.FC<ViewProps> = ({ history }) => {
     return (
         <main>
             <Banner history={history} />
-            <StyledContainer maxWidth="lg">
-                <BookShelf
+            <ViewContainer>
+                <BooksContainer
                     searchOptions={{
                         searchQuery: searchQuery,
                         pageQuery: pageQuery,
@@ -37,7 +30,7 @@ const Home: React.FC<ViewProps> = ({ history }) => {
                     }}
                     searchCallBack={handleSearch}
                 />
-            </StyledContainer>
+            </ViewContainer>
         </main>
     )
 }

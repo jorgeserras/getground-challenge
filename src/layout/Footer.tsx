@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from "@mui/material/styles"
-import Link from '../components/Link'
+import { Link } from '../components/Buttons'
 import { Grid, Divider, Typography } from "@mui/material"
 
 const StyledFooter = styled("footer")(({ theme }) => ({
@@ -30,12 +30,12 @@ const Footer: React.FC = () => {
                         Search
                     </Typography>
                     <Grid item>
-                        <Link to='/#' variant="light">
+                        <Link to='/search?s=Ιταλία&p=1&r=10' variant="light">
                             - Italian books
                         </Link>
                     </Grid>
                     <Grid item >
-                        <Link to='/#' variant="light">
+                        <Link to='/search?s=Αυστρία&p=1&r=10' variant="light">
                             - Austrian books
                         </Link>
                     </Grid>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { styled } from "@mui/material/styles"
 import MenuIcon from '@mui/icons-material/Menu'
 import { AppBar, AppBarProps, IconButton, Menu, MenuItem, Grid, GridProps, Typography } from '@mui/material'
-import Link from '../components/Link'
+import { Link } from '../components/Buttons'
 
 const StyledAppBar = styled(AppBar)<AppBarProps>(({ theme }) => ({
     padding: theme.spacing(0, 2),
@@ -70,18 +70,18 @@ const Header: React.FC = () => {
                     <Grid item sm={6} md={4}>
                         <StyledGrid container alignItems="center" justifyContent="center">
                             <Grid item textAlign="center" xs={4}>
-                                <Link to="/" >
-                                    <Typography variant="h4">Authors</Typography>
+                                <Link to="/search?s=Ιταλία&p=1&r=10" >
+                                    <Typography variant="h4">Italy</Typography>
                                 </Link>
                             </Grid>
                             <Grid item textAlign="center" xs={4}>
-                                <Link to="/" >
-                                    <Typography variant="h4">Cities</Typography>
+                                <Link to="/search?s=Ελλάδα&p=1&r=10" >
+                                    <Typography variant="h4">Greece</Typography>
                                 </Link>
                             </Grid>
                             <Grid item textAlign="center" xs={4}>
-                                <Link to="/" >
-                                    <Typography variant="h4">Countries</Typography>
+                                <Link to="/search?s=Γερμανία&p=1&r=10" >
+                                    <Typography variant="h4">Germany</Typography>
                                 </Link>
                             </Grid>
                         </StyledGrid>

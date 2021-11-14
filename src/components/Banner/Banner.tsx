@@ -1,9 +1,9 @@
 import React from 'react'
 import { styled } from "@mui/material/styles"
-import { ViewProps } from '../types/interfaces'
+import { ViewProps } from '../../types/interfaces'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
-import Button from './Button'
+import { Button } from '../Buttons'
 
 const StyledContainer = styled('div')(({ theme }) => ({
     padding: theme.spacing(10, 2),
@@ -15,25 +15,25 @@ const StyledContainer = styled('div')(({ theme }) => ({
 
 
 type StateProps = {
-    filledStar: boolean;
+    /* color: string; */
 }
 
 class Banner extends React.Component<ViewProps, StateProps> {
 
     state: StateProps = {
-        filledStar: false
+        /* color: "dark" */
     }
 
-    componentDidMount() {
-        //this.getProps()
-    }
+    /* componentDidMount() {
+        //Do API call for example        
+        this.setState({
+            color: "light"
+        }) 
+    } */
 
     handleLink = (searchQuery: string) => {
         const { history } = this.props
         history.push(`/search?s=${searchQuery}&p=1&r=10`)
-        /*         this.setState({
-                    filledStar: true
-                }) */
     }
 
     render() {

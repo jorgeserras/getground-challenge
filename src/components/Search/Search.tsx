@@ -44,9 +44,9 @@ const Search: FunctionComponent<Props> = React.memo(({ placeholder, loading, han
     }
     handleSearch('search', target.search.value)
   }}>
-    <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+    <IconButton data-testid="submit" type="submit" sx={{ p: '10px' }} aria-label="search">
       {loading ?
-        <CircularProgress color="secondary" />
+        <CircularProgress data-testid="loading" color="secondary" />
         :
         <SearchIcon color="secondary" />
       }
@@ -56,7 +56,7 @@ const Search: FunctionComponent<Props> = React.memo(({ placeholder, loading, han
       name="search"
       defaultValue={defaultValue}
       key={defaultValue}
-      inputProps={{ 'aria-label': placeholder }}
+      inputProps={{ 'aria-label': placeholder, 'data-testid': "input" }}
     />
     <IconButton onClick={() => handleSearch('search', '')} sx={{ p: '10px' }} aria-label="clear">
       {defaultValue && <ClearIcon color="secondary" />}

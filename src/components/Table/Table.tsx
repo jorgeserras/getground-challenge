@@ -9,7 +9,6 @@ import TablePagination from '@mui/material/TablePagination'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-
 import Skeleton from '@mui/material/Skeleton'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
@@ -103,9 +102,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
     </Box>
   )
 }
-
-
-interface Props {
+interface TableProps {
   rows: any[];
   columns: any[];
   totalRows: number;
@@ -118,12 +115,10 @@ interface Props {
   ) => void;
 }
 
-const CustomizedTables: React.FC<Props> = React.memo(({ rows, columns, totalRows, rowsPerPage = 10, page = 1, loading = false, handleChangeOptions }) => {
+const CustomizedTables: React.FC<TableProps> = React.memo(({ rows, columns, totalRows, rowsPerPage = 10, page = 1, loading = false, handleChangeOptions }) => {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - totalRows) : 0
-
-  console.log("Table Render", page, rowsPerPage)
 
   return (
     <TableContainer component={Paper}>
