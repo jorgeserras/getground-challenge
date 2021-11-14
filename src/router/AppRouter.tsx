@@ -5,6 +5,7 @@ import Header from '../layout/Header'
 import history from "./history"
 
 const Home = React.lazy(() => import('../views/Home'))
+const Search = React.lazy(() => import('../views/Search'))
 
 function ScrollToTop() { /* Scroll to top of page */
     const { pathname } = useLocation()
@@ -34,7 +35,7 @@ const AppRouter: React.FC = () => {
                     path='/search'
                     component={() => (
                         <Suspense fallback={<></>}>
-                            <Home history={history} />
+                            <Search history={history} />
                         </Suspense>
                     )}
                 />

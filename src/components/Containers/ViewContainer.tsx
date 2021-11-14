@@ -5,7 +5,7 @@ import { Container } from '@mui/material'
 
 const StyledContainer = styled(Container)(({ theme }) => ({
     padding: theme.spacing(10, 2),
-    minHeight: '100vh'
+    /* minHeight: '100vh' */
 }))
 
 interface Props {

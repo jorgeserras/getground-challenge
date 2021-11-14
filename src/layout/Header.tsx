@@ -45,14 +45,19 @@ const Header: React.FC = () => {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <Link variant="main" to='/#'>
+            <Link variant="main" to='/search?s=Ιταλία&p=1&r=10'>
                 <MenuItem>
-                    Books
+                    Italy
                 </MenuItem>
             </Link>
-            <Link variant="main" to='/#'>
+            <Link variant="main" to='/search?s=Ελλάδα&p=1&r=10'>
                 <MenuItem>
-                    Contacts
+                    Greece
+                </MenuItem>
+            </Link>
+            <Link variant="main" to='/search?s=Γερμανία&p=1&r=10'>
+                <MenuItem>
+                    Germany
                 </MenuItem>
             </Link>
         </Menu>

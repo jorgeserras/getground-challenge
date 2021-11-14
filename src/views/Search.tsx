@@ -1,9 +1,13 @@
 import React, { useCallback } from 'react'
 import { ViewProps } from '../types/interfaces'
+import { useQuery } from '../hooks/query'
 import { BooksContainer, ViewContainer } from '../components/Containers'
-import { Banner } from '../components/Banner'
 
-const Home: React.FC<ViewProps> = ({ history }) => {
+const Search: React.FC<ViewProps> = ({ history }) => {
+    const query = useQuery()
+    const searchQuery = query.get("s") || ""
+    const pageQuery = query.get("p") || "1"
+    const rowsPerPageQuery = query.get("r") || "10"
 
     const handleSearch = useCallback((
         searchText: string,
@@ -15,13 +19,12 @@ const Home: React.FC<ViewProps> = ({ history }) => {
 
     return (
         <main>
-            <Banner history={history} />
             <ViewContainer>
                 <BooksContainer
                     searchOptions={{
-                        searchQuery: '',
-                        pageQuery: '1',
-                        rowsPerPageQuery: '10'
+                        searchQuery: searchQuery,
+                        pageQuery: pageQuery,
+                        rowsPerPageQuery: rowsPerPageQuery
                     }}
                     searchCallBack={handleSearch}
                 />
@@ -30,4 +33,4 @@ const Home: React.FC<ViewProps> = ({ history }) => {
     )
 }
 
-export default Home
+export default Search

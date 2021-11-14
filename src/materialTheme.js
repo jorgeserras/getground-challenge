@@ -53,6 +53,8 @@ export default createTheme({
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
+                    height: '100%',
+                    padding: 0,
                     margin: 0
                 }
             }

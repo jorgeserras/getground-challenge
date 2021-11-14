@@ -13,7 +13,7 @@ const StyledLink = styled(Link, {
     textDecoration: 'none',
     color: variant ? theme.palette.primary[variant] : "#fff",
     '&:hover': {
-        color: theme.palette.primary.contrastText
+        color: variant === 'main' ? theme.palette.primary.light  : theme.palette.primary.contrastText
     }
 }))
 
