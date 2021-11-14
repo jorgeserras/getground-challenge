@@ -19,5 +19,7 @@ export interface Book {
 export interface RootState {
     books: Book[];
     count: number;
+    page: number;
+    rowsPerPage: number;
     loading: boolean;
 }

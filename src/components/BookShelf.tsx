@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { RootStateOrAny, useSelector } from 'react-redux'
 import { loadBooks, useActions } from '../state/actions'
-import { styled } from "@mui/material/styles"
 import { Grid } from '@mui/material'
 import Search from '../components/Search'
 import Table from '../components/Table'
@@ -16,42 +15,83 @@ const cols = [
 ]
 
 interface Props {
-    searchQuery?: string | null;
-    searchCallBack: (searchText: string) => void;
+    searchOptions: {
+        searchQuery: string,
+        pageQuery: string,
+        rowsPerPageQuery: string
+    };
+    searchCallBack: (
+        searchText: string,
+        page: number,
+        rowsPerPage: number
+    ) => void;
 }
 
-const BookShelf: React.FC<Props> = ({ searchQuery, searchCallBack }) => {
+const BookShelf: React.FC<Props> = ({ searchOptions, searchCallBack }) => {
 
-    const { books, count } = useSelector((state: RootStateOrAny) => state.repository, (prev, next) => prev.loading === next.loading)
+    const { books, count, loading } = useSelector((state: RootStateOrAny) => state.repository, (prev, next) => prev.loading === next.loading)
     const getRepositoryBooks = useActions(loadBooks)
+
+    const { searchQuery, pageQuery, rowsPerPageQuery } = searchOptions
+
+    const page = parseInt(pageQuery)
+    const rowsPerPage = parseInt(rowsPerPageQuery)
 
 
     useEffect(() => {
-        getRepositoryBooks(searchQuery)
-    }, [getRepositoryBooks, searchQuery])
+        getRepositoryBooks(searchQuery, page, rowsPerPage)
+    }, [getRepositoryBooks, searchQuery, page, rowsPerPage])
 
-    const handleSearch = useCallback((e: React.SyntheticEvent) => {
-        e.preventDefault()
-        const target = e.target as typeof e.target & {
-            search: { value: string }
+    const handleSearch = useCallback((type: 'search' | 'page' | 'rowsPerPage', newValue: string) => {
+        switch (type) {
+            case 'search':
+                return searchCallBack(
+                    newValue,
+                    1,
+                    rowsPerPage
+                )
+            case 'page':
+                return searchCallBack(
+                    searchQuery,
+                    parseInt(newValue),
+                    rowsPerPage
+                )
+            case 'rowsPerPage':
+                return searchCallBack(
+                    searchQuery,
+                    1,
+                    parseInt(newValue)
+                )
+            default:
+                return null
         }
-        const search = target.search.value
-        searchCallBack(search)
+    }, [searchCallBack, searchQuery, rowsPerPage])
 
-    }, [searchCallBack])
 
     console.log("BookShelf Render")
 
 
     return (
-        <Grid container alignItems="center" justifyContent="center">
-            <Grid item xs={6} lg={3}>
-                Find the best books
+        <Grid container rowSpacing={4} justifyContent="center">
+            <Grid item>
+                <Search
+                    placeholder="Search book..."
+                    loading={loading}
+                    defaultValue={searchQuery}
+                    handleSearch={handleSearch}
+                />
             </Grid>
-            <Grid item xs={6} lg={3}>
-                <Search text="Search book" defaultValue={searchQuery} handleSearch={handleSearch} />
+            <Grid item xs={12}>
+                <Table
+                    loading={loading}
+                    rows={books}
+                    columns={cols}
+                    page={page - 1}
+                    rowsPerPage={rowsPerPage}
+                    totalRows={count}
+                    handleChangeOptions={handleSearch}
+                />
             </Grid>
-            <Table rows={books} columns={cols} totalRows={count} />
         </Grid>
     )
 }

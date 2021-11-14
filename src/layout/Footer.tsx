@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from "@mui/material/styles"
-import { Link } from 'react-router-dom'
-import { Grid, Divider } from "@mui/material"
+import Link from '../components/Link'
+import { Grid, Divider, Typography } from "@mui/material"
 
 const StyledFooter = styled("footer")(({ theme }) => ({
     color: "#fff",
@@ -9,73 +9,56 @@ const StyledFooter = styled("footer")(({ theme }) => ({
     backgroundColor: theme.palette.primary.main
 }))
 
-const StyledLink = styled(Link)(({ theme }) => ({
-    textDecoration: "none",
-    color: theme.palette.primary.contrastText,
-    '&:hover' : {
-        color: theme.palette.primary.light
-    }
-}))
-
 const StyledDivider = styled(Divider)(({ theme }) => ({
     backgroundColor: theme.palette.primary.contrastText,
     margin: '16px 0'
 }))
-
 
 const Footer: React.FC = () => {
     return (
         <StyledFooter data-testid="footerTestId">
             <Grid container justifyContent="center" >
                 <Grid item xs={12} sm={12} md={3} lg={3}>
-                    <StyledLink to='/'>
-                        <h4>GetGround Books</h4>
-                    </StyledLink>
+                    <Typography variant="h2">
+                        <Link to='/'>
+                            GetGround Books
+                        </Link>
+                    </Typography>
                 </Grid>
-
                 <Grid item xs={12} sm={4} md={3} lg={2}>
-                    <h4>
+                    <Typography variant="h3">
                         Search
-                    </h4>
+                    </Typography>
                     <Grid item>
-                        <p>
-                            <StyledLink to='/'>
-                                - By author
-                            </StyledLink>
-                        </p>
+                        <Link to='/#' variant="light">
+                            - By author
+                        </Link>
                     </Grid>
                     <Grid item >
-                        <p>
-                            <StyledLink to='/'>
-                                - By city
-                            </StyledLink>
-                        </p>
+                        <Link to='/#' variant="light">
+                            - By city
+                        </Link>
                     </Grid>
                 </Grid>
                 <Grid item xs={12} sm={4} md={3} lg={2}>
-                    <h4>
+                    <Typography variant="h3">
                         Legal
-                    </h4>
+                    </Typography>
                     <Grid item>
-                        <p>
-                            <StyledLink to='/#'>
-                                - Terms & Conditions
-                            </StyledLink>
-                        </p>
+                        <Link to='/#' variant="light">
+                            - Terms & Conditions
+                        </Link>
                     </Grid>
                     <Grid item>
-                        <p>
-                            <StyledLink to='/#'>
-                                - Privacy Policy
-                            </StyledLink>
-                        </p>
+                        <Link to='/#' variant="light">
+                            - Privacy Policy
+                        </Link>
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={8}>
                     <StyledDivider />
                 </Grid>
             </Grid>
-            
             <Grid container justifyContent="center">
                 <Grid item>
                     Copyright &copy; {new Date().getFullYear()} | All rights reserved.

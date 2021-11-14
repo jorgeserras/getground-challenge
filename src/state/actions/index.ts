@@ -7,6 +7,9 @@ import useActions from './useActions'
 export const SET_BOOKS = "SET_BOOKS"
 export const DEPOSIT = "DEPOSIT"
 export const SET_LOADING = "SET_LOADING"
+export const SET_ROWS_PAGE = "SET_ROWS_PAGE"
+export const SET_PAGE = "SET_PAGE"
+
 
 type actionType = {
     type: string,
@@ -30,6 +33,28 @@ export const setBooks = (books: number) => {
         dispatch({
             type: SET_BOOKS,
             payload: books
+        })
+    }
+
+}
+
+export const setPage = (page: number) => {
+
+    return (dispatch: React.Dispatch<actionType>) => {
+        dispatch({
+            type: SET_PAGE,
+            payload: page
+        })
+    }
+
+}
+
+export const setRowsPerPage = (rowsPerPage: number) => {
+
+    return (dispatch: React.Dispatch<actionType>) => {
+        dispatch({
+            type: SET_ROWS_PAGE,
+            payload: rowsPerPage
         })
     }
 

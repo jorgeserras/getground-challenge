@@ -1,12 +1,14 @@
 import React, { FunctionComponent } from 'react'
 import { styled } from "@mui/material/styles"
-import { InputBase, IconButton } from '@mui/material'
+import { InputBase, IconButton, CircularProgress } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import ClearIcon from '@mui/icons-material/Clear'
 
 const StyledForm = styled('form')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   width: 'fit-content',
+  padding: theme.spacing(1),
   color: theme.palette.common.white,
   backgroundColor: theme.palette.primary.main,
   borderRadius: theme.shape.borderRadius
@@ -27,26 +29,38 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }))
 
-
 interface Props {
-  text: string;
+  placeholder: string;
+  loading: boolean;
   defaultValue?: string | null;
-  handleSearch: (e: React.SyntheticEvent) => void;
+  handleSearch: (type: 'search', newValue: string) => void;
 }
 
-const Search: FunctionComponent<Props> = React.memo(({ text, handleSearch, defaultValue }) =>
-(
-  <StyledForm onSubmit={handleSearch}>
+const Search: FunctionComponent<Props> = React.memo(({ placeholder, loading, handleSearch, defaultValue }) => (
+  <StyledForm onSubmit={(e) => {
+    e.preventDefault()
+    const target = e.target as typeof e.target & {
+      search: { value: string }
+    }
+    handleSearch('search', target.search.value)
+  }}>
     <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-      <SearchIcon color="secondary" />
+      {loading ?
+        <CircularProgress color="secondary" />
+        :
+        <SearchIcon color="secondary" />
+      }
     </IconButton>
     <StyledInputBase
-      placeholder={text}
+      placeholder={defaultValue || placeholder}
       name="search"
       defaultValue={defaultValue}
       key={defaultValue}
-      inputProps={{ 'aria-label': text }}
+      inputProps={{ 'aria-label': placeholder }}
     />
+    <IconButton onClick={() => handleSearch('search', '')} sx={{ p: '10px' }} aria-label="clear">
+      {defaultValue && <ClearIcon color="secondary" />}
+    </IconButton>
   </StyledForm>
 ))
 
